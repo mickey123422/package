@@ -1,0 +1,33 @@
+{% extends 'layout.html'%}
+
+{% block content %}
+
+<h2 align="center">Recent Order</h2>
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">LineID</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Address</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        {% for post in posts %}
+        <th scope="row">{{post.id}}</th>
+        <td>{{post.name}}</td>
+        <td>{{post.line}}</td>
+        <td>{{post.phone}}</td>
+        <td>{{post.address}}</td>
+      </tr>
+     {% endfor %}
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+        
+{% endblock %}
