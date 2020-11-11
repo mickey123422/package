@@ -1,0 +1,34 @@
+{% extends 'layout.html'%}
+
+{% block content %}
+
+<h2 align="center">Recent Package</h2>
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Tracking Number</th>
+            <th scope="col">Size</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Address</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr>
+            {% for pack in packs %}
+            <th scope="row">{{pack.id}}</th>
+            <td>{{pack.trackingno}}</td>
+            <td>{{pack.size}}</td>
+            <td>{{pack.phone}}</td>
+            <td>{{pack.address}}</td>
+        </tr>
+        {% endfor %}
+        </tr>
+    </tbody>
+</table>
+
+
+
+
+{% endblock %}

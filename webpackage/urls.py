@@ -22,25 +22,28 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',views.hello),
+    path('', views.hello),
 
-    path('index',views.index),
+    path('index/<int:pk>/', views.index, name='index'),
+    path('index2', views.index2),
 
-    path('addCustomer',views.page1),
-    path('Customer',views.addCustomers),
+    # path('DeleteCus/<int:pk>/', views.DeleteCus),
 
-    path('addPackage',views.createPackage),
-    path('Package',views.createPackage),
+    path('addCustomer/', views.page1, name='addCus'),
+    path('updatecustomer/<int:pk>/', views.addCustomers, name='updatecustomer'),
 
-    path('page2',views.page2),
+    path('addPackage', views.createPackage),
+    path('Package', views.addPackage),
 
-    path('createForm',views.createForm),
-    path('addForm',views.addUser),
+    path('page2', views.page2),
 
-    path('loginForm',views.loginForm),
-    path('login',views.login),
+    path('createForm', views.createForm),
+    path('addForm', views.addUser),
 
-    path('logout',views.logout),
+    path('loginForm', views.loginForm),
+    path('login', views.login),
 
-    
+    path('logout', views.logout),
+
+
 ]
