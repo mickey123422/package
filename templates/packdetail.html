@@ -2,32 +2,22 @@
 
 {% block content %}
 
-<h2 align="center">Recent Order</h2>
+<h2 align="center">Location and damage history</h2>
 
-<div class="card bg-dark  text-white mb-3" style="width: 10rem;">
-  <div class="card-body">
-    <h5 class="card-title text-center">Total Order  By   {{ user.username }}</h5>
-    <p class="card-text text-center">{{ count }}</p>
-   
-  </div>
-</div>
+
 <table class="table table-lg text-reponsive">
   <thead class="thead-dark">
     <tr>
-      <th scope="col">ID</th>
       <th scope="col">Name</th>
       <th scope="col">Tracking Number</th>
       <th scope="col">Sensor ID</th>
-      <th scope="col">Phone</th>
-      <th scope="col">Address</th>
-      <th scope="col">Size</th>
-      <th scope="col">Type</th>
-      <th scope="col">Product</th>
-      <th scope="col">Status</th>
+      <th scope="col">Latitude</th>
+      <th scope="col">longtitude</th>
+      <th scope="col">Damage</th>
       <th scope="col">Date</th>
-      <th scope="col">Edit</th>
-      <th scope="col">Delete</th>
-      <th scope="col">Views</th>
+      
+
+     
 
     </tr>
   </thead>
@@ -57,8 +47,10 @@
         <a class="btn-sm btn-danger" href="{% url 'deletecustomer' post.id  %}">Delete</a></p>
       </td>
       <td>
-        <a class="btn-sm btn-success" href="/packdetail">Views</a></p>
+        <a class="btn-sm btn-success" href="{% url 'index2'   %}">Views</a></p>
       </td>
+
+
     </tr>
     {% endfor %}
     </tr>

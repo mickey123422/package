@@ -1,89 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF=8" />
+    <meta name="viewport" content="width=device-with ,initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+      crossorigin="anonymous"
+    ></script>
+    {% load static %}
 
-<head>
-    <meta charset="UTF=8">
-    <meta name="viewport" content="width=device-with ,initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-        crossorigin="anonymous"></script>
-    {%  load static %}
-
-
-
-
-<body>
-    <nav class="navbar navbar-expand-lg navbar-primary bg-light">
+    <body>
+      <nav class="navbar navbar-expand-lg navbar-primary bg-light">
         <a class="navbar-brand" href="/page2">Pack Tracker</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="nav nav-pills mr-auto">
-
-                {% if user.is_authenticated %}
-                <li class="nav-link">
-                    <a>Hello , {{user.username}} {{user.id}}</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'index' user.id  %}">View Customer<span
-                            class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link disabled" href="/index2" aria-disabled="true">View Package<span
-                            class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'addCus'  %}">Add Customer <span
-                            class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link disabled" href="/addPackage" aria-disabled="true">Add Package <span
-                            class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/logout">Sign Out</a>
-                </li>
-                {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" href="/createForm">Sign Up</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/loginForm">Sign In</a>
-                </li>
-                {% endif %}
-
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
+          <ul class="nav nav-pills mr-auto">
+            {% if user.is_authenticated %}
+            <li class="nav-link">
+              <a>Hello , {{user.username}} </a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'index' user.id  %}"
+                >View Customer<span class="sr-only">(current)</span></a
+              >
+            </li>
+            {% if user.is_superuser %}
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'index2'  %}"
+                >View User Detail<span class="sr-only">(current)</span></a
+              >
+            </li>
+            {% endif %}
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'addCus'  %}"
+                >Add Customer <span class="sr-only">(current)</span></a
+              >
+            </li>
+            <li class="nav-item active">
+              <a
+                class="nav-link disabled"
+                href="/addPackage"
+                aria-disabled="true"
+                >Add Package <span class="sr-only">(current)</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/logout">Sign Out</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="/createForm">Sign Up</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/loginForm">Sign In</a>
+            </li>
+            {% endif %}
+          </ul>
         </div>
-    </nav>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <script
+      </nav>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+      <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5I5_VxbNz8BGtTbNwAQj5WuFmS6huoWE&callback=initMap&libraries=&v=weekly"
-        defer></script>
-    <div id="map"></div>
+        defer
+      ></script>
+      <div id="map"></div>
 
-    <div class="container">
-        {% block content %}
-
-        {% endblock %}
-
-
-    </div>
-</body>
-</head>
-
+      <div class="container mt-5">{% block content %} {% endblock %}</div>
+    </body>
+  </head>
 </html>

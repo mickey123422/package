@@ -1,0 +1,67 @@
+{% extends 'layout.html'%}
+
+{% block content %}
+
+<h2 align="center">Recent Order</h2>
+
+
+<table class="table table-lg text-reponsive">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Tracking Number</th>
+            <th scope="col">Sensor ID</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Address</th>
+            <th scope="col">Size</th>
+            <th scope="col">Type</th>
+            <th scope="col">Product</th>
+            <th scope="col">Status</th>
+            <th scope="col">Date</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+            <th scope="col">Views</th>
+
+        </tr>
+    </thead>
+    <tbody>
+
+
+        {% for post in posts %}
+        <tr class="table table-{{post.as_bootstrap_status}} ">
+            <th scope="row">{{post.id}}</th>
+            <td>{{post.name}}</td>
+            <td>{{post.line}}</td>
+            <td>{{post.sensorid}}</td>
+            <td>{{post.phone}}</td>
+            <td>{{post.address}}</td>
+            <td>{{post.size}}</td>
+            <td>{{post.types}}</td>
+            <td>{{post.packname}}</td>
+            <td>{{post.status}}</td>
+            <td>{{post.createdate |date:" d/m/Y [H:i] " }}</td>
+
+            <td>
+                <!-- dropdownไม่ขึ้น  บันทึกได้แล้ว -->
+
+                <a class="btn-sm btn-info" href="{% url 'editcustomer' post.id  %}">Edit</a></p>
+            </td>
+            <td>
+                <a class="btn-sm btn-danger" href="{% url 'deletecustomer' post.id  %}">Delete</a></p>
+            </td>
+            <td>
+                <a class="btn-sm btn-success" href="">Views</a></p>
+            </td>
+
+
+        </tr>
+        {% endfor %}
+        </tr>
+    </tbody>
+</table>
+
+
+
+
+{% endblock %}

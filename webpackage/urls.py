@@ -25,9 +25,7 @@ urlpatterns = [
     path('', views.hello),
 
     path('index/<int:pk>/', views.index, name='index'),
-    path('index2', views.index2),
-
-    # path('DeleteCus/<int:pk>/', views.DeleteCus),
+    path('index2', views.index2, name='index2'),
 
     path('addCustomer/', views.page1, name='addCus'),
     path('updatecustomer/<int:pk>/', views.addCustomers, name='updatecustomer'),
@@ -45,5 +43,14 @@ urlpatterns = [
 
     path('logout', views.logout),
 
+    path('editpage/<int:pk>', views.CreateEdit),
+    path('edit/<int:pk>/', views.EditCustomer, name='editcustomer'),
 
+    path('deletepage/<int:pk>', views.DeleteCus, name='deletecustomer'),
+    path('deleteuserpage/<int:pk>', views.DeleteUser, name='deleteuser'),
+
+
+    path('Viewusercus/<int:pk>', views.Viewuser, name='Viewusercustomer'),
+
+    path('packdetail', views.packdetail),
 ]

@@ -13,3 +13,17 @@
         margin: 0;
         padding: 0;
       }
+      
+      .status-pickedup{
+        background-color:blue; 
+      
+    }
+    
+      .status-outfordelivery{
+        color: red;
+        
+      }
+      .status-delivered{
+      color: green;
+    
+    }

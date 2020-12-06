@@ -1,0 +1,14 @@
+{% extends 'layout.html'%}
+
+
+{% block content %}
+
+<h1>Are you sure want to delete User {{ users.username }} ?</h1>
+
+<form method="POST" action="/deleteuserpage/{{ users.id }}">
+    {% csrf_token %}
+    <input type="submit" class="btn-sm btn-success" name="Confirm" value="Confirm">
+    <a class="btn-sm btn-danger" href="{% url 'index' user.id  %}">Cancel </a>
+
+</form>
+{% endblock %}
