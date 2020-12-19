@@ -1,6 +1,6 @@
 {% extends 'layout.html'%}
 
-
+{% csrf_token %}
 {% block content %}
 <h2 align="center">Add Customer</h2>
 
@@ -15,7 +15,23 @@
         <label for="">Tracking Number</label>
         <input type="text" class="form-control" name="line" required>
     </div>
-
+ <div>
+ 
+    {% if user.is_superuser %}
+        <div class="form-group">
+            <label for="">Add To User:</label>
+            <br>
+            <select name="adminadd">
+                <option selected disabled="true" >User</option>
+                {% for user_profile in users %}
+                <option value="{{user_profile.user_id_id}}">{{user_profile.user_id_id}}-{{user_profile.username}}</option>
+               
+                 {% endfor %}
+            </select>
+           
+        </div>
+    </div>
+   {% endif %}
     <div>
         <div class="form-group">
             <label for="">Size</label>

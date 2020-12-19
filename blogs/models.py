@@ -32,7 +32,7 @@ class Post(models.Model):
     status = models.CharField(
         max_length=50,)
     size = models.CharField(
-        max_length=50, )
+        max_length=50,  null=True)
     types = models.CharField(
         max_length=50, )
     sensorid = models.CharField(
@@ -46,3 +46,10 @@ class Pack(models.Model):
     size = models.CharField(max_length=10)
     phone = models.IntegerField()
     address = models.TextField(max_length=200)
+
+
+class esp8266(models.Model):
+    vibration = models.IntegerField()
+    latitude = models.FloatField(null=True)
+    longitude = models.FloatField(null=True)
+    day = models.CharField(max_length=100)

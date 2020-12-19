@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.contrib import auth
 from django.contrib.auth import get_user_model
 from .forms import EditForm
+from django.core.paginator import Paginator
 # Create your views here.
 
 
@@ -38,7 +39,8 @@ def index2(request):
 
 
 def page1(request):
-    return render(request, 'page1.html')
+    users = profiles.objects.all()
+    return render(request, 'page1.html', {'users': users})
 
 
 def addCustomers(request, pk):
@@ -54,11 +56,24 @@ def addCustomers(request, pk):
         types = request.POST.get('types')
         sensorid = request.POST.get('sensorid')
         packname = request.POST['packname']
-        print(status)
+        adminadd = request.POST.get('adminadd')
         id = pk
-        print(pk)
+
+        if adminadd == None:
+
+            adminadd = pk
+            print('role = user')
+
+        else:
+            size = request.POST.get('size')
+
+            print('role = admin')
+            print(status)
+            print(pk)
+            print(size)
+            print(adminadd)
         addCustomer = Post(name=name, line=line,
-                           phone=phone, address=address, status=status, size=size, types=types, packname=packname, user_id_id=id, sensorid=sensorid)
+                           phone=phone, address=address, status=status, size=size, types=types, packname=packname, user_id_id=adminadd, sensorid=sensorid)
         addCustomer.save()
 
         return render(request, 'result.html')
@@ -217,5 +232,6 @@ def DeleteUser(request, pk):
         return render(request, 'landingpage.html')
     return render(request, 'DeleteUserPage.html', {'users': users})
 
-def packdetail  (request):
+
+def packdetail(request):
     return render(request, 'packdetail.html')
